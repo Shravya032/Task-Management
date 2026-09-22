@@ -4,7 +4,9 @@ import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import './App.css'; // Assuming default styling
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api/tasks';
+// Note: You might need to adjust the path '/api/tasks' based on your server structure. 
+// For now, let's focus on the base URL.
 
 function App() {
     const [tasks, setTasks] = useState([]);
