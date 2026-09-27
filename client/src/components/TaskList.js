@@ -1,21 +1,54 @@
 import React from 'react';
 import TaskItem from './TaskItem';
 
-function TaskList({ tasks, onToggle, onDelete }) {
+function TaskList({
+    tasks,
+    onToggle,
+    onDelete,
+    onEdit
+}) {
     return (
         <div className="task-list">
-            <h2>Your Tasks</h2>
-            {tasks.length === 0 && <p>No tasks yet! Add one above.</p>}
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-                {tasks.map(task => (
-                    <TaskItem
-                        key={task._id}
-                        task={task}
-                        onToggle={onToggle}
-                        onDelete={onDelete}
-                    />
-                ))}
-            </ul>
+
+            {tasks.length === 0 ? (
+
+                <div className="empty-state">
+
+                    <div className="empty-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        No tasks found
+                    </h3>
+
+                    <p>
+                        Create a new task to get
+                        started with your productivity.
+                    </p>
+
+                </div>
+
+            ) : (
+
+                <div className="tasks-container">
+
+                    {tasks.map((task) => (
+
+                        <TaskItem
+                            key={task._id}
+                            task={task}
+                            onToggle={onToggle}
+                            onDelete={onDelete}
+                            onEdit={onEdit}
+                        />
+
+                    ))}
+
+                </div>
+
+            )}
+
         </div>
     );
 }
