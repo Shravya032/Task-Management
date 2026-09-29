@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE =
+    process.env.REACT_APP_API_BASE_URL ||
+    'http://localhost:5000/api';
+
 function Register({ onShowLogin }) {
 
     const [name, setName] =
@@ -43,7 +47,7 @@ function Register({ onShowLogin }) {
         try {
 
             await axios.post(
-                '${API_BASE}/auth/register',
+                `${API_BASE}/auth/register`,
                 {
                     name,
                     email,

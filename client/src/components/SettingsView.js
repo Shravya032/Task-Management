@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE =
+    process.env.REACT_APP_API_BASE_URL ||
+    'http://localhost:5000/api';
+
 function SettingsView({
     user,
     onLogout
@@ -74,7 +78,7 @@ function SettingsView({
 
             const response =
                 await axios.put(
-                    '${API_BASE}/auth/change-password',
+                    `${API_BASE}/auth/change-password`,
                     {
                         currentPassword,
                         newPassword

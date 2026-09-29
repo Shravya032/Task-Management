@@ -13,9 +13,10 @@ import ResetPassword from './components/ResetPassword';
 
 import './App.css';
 
-const API_URL =
-    process.env.REACT_APP_API_BASE_URL ||
-    'http://localhost:5000/api/tasks';
+
+const API_BASE = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_URL = `${API_BASE}/tasks`;
+
 
 function App() {
 
@@ -511,7 +512,7 @@ function App() {
                     <button
                         className={
                             activePage ===
-                            'dashboard'
+                                'dashboard'
                                 ? 'nav-item active'
                                 : 'nav-item'
                         }
@@ -529,7 +530,7 @@ function App() {
                     <button
                         className={
                             activePage ===
-                            'tasks'
+                                'tasks'
                                 ? 'nav-item active'
                                 : 'nav-item'
                         }
@@ -563,7 +564,7 @@ function App() {
                     <button
                         className={
                             activePage ===
-                            'calendar'
+                                'calendar'
                                 ? 'nav-item active'
                                 : 'nav-item'
                         }
@@ -581,7 +582,7 @@ function App() {
                     <button
                         className={
                             activePage ===
-                            'analytics'
+                                'analytics'
                                 ? 'nav-item active'
                                 : 'nav-item'
                         }
@@ -603,7 +604,7 @@ function App() {
                     <button
                         className={
                             activePage ===
-                            'settings'
+                                'settings'
                                 ? 'nav-item active'
                                 : 'nav-item'
                         }
@@ -702,34 +703,34 @@ function App() {
                     {activePage ===
                         'settings' && (
 
-                        <SettingsView
-                            user={user}
-                            onLogout={
-                                handleLogout
-                            }
-                        />
+                            <SettingsView
+                                user={user}
+                                onLogout={
+                                    handleLogout
+                                }
+                            />
 
-                    )}
+                        )}
 
 
                     {activePage ===
                         'calendar' && (
 
-                        <CalendarView
-                            tasks={tasks}
-                        />
+                            <CalendarView
+                                tasks={tasks}
+                            />
 
-                    )}
+                        )}
 
 
                     {activePage ===
                         'analytics' && (
 
-                        <AnalyticsView
-                            tasks={tasks}
-                        />
+                            <AnalyticsView
+                                tasks={tasks}
+                            />
 
-                    )}
+                        )}
 
 
                     {activePage !==
@@ -739,132 +740,22 @@ function App() {
                         activePage !==
                         'settings' && (
 
-                        <>
+                            <>
 
-                            <div className="welcome-section">
-
-                                <div>
-
-                                    <h1>
-                                       Hellooo!!,{' '}
-                                        {user.name} 👋
-                                    </h1>
-
-                                    <p>
-                                        Here's an
-                                        overview of
-                                        your tasks
-                                        for today.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div className="stats-grid">
-
-                                <div className="stat-card">
-
-                                    <div className="stat-icon blue">
-                                        📋
-                                    </div>
+                                <div className="welcome-section">
 
                                     <div>
 
-                                        <span>
-                                            Total Tasks
-                                        </span>
-
-                                        <h2>
-                                            {totalTasks}
-                                        </h2>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div className="stat-card">
-
-                                    <div className="stat-icon orange">
-                                        ◷
-                                    </div>
-
-                                    <div>
-
-                                        <span>
-                                            In Progress
-                                        </span>
-
-                                        <h2>
-                                            {activeTasks}
-                                        </h2>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div className="stat-card">
-
-                                    <div className="stat-icon green">
-                                        ✓
-                                    </div>
-
-                                    <div>
-
-                                        <span>
-                                            Completed
-                                        </span>
-
-                                        <h2>
-                                            {completedTasks}
-                                        </h2>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div className="stat-card">
-
-                                    <div className="stat-icon red">
-                                        !
-                                    </div>
-
-                                    <div>
-
-                                        <span>
-                                            Overdue
-                                        </span>
-
-                                        <h2>
-                                            {overdueTasks}
-                                        </h2>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <section className="tasks-section">
-
-                                <div className="section-header">
-
-                                    <div>
-
-                                        <h2>
-                                            My Tasks
-                                        </h2>
+                                        <h1>
+                                            Hellooo!!,{' '}
+                                            {user.name} 👋
+                                        </h1>
 
                                         <p>
-                                            Manage your
-                                            tasks and
-                                            stay
-                                            productive.
+                                            Here's an
+                                            overview of
+                                            your tasks
+                                            for today.
                                         </p>
 
                                     </div>
@@ -872,120 +763,230 @@ function App() {
                                 </div>
 
 
-                                <div className="add-task-card">
+                                <div className="stats-grid">
 
-                                    <TaskForm
-                                        onSubmit={
-                                            addTask
-                                        }
-                                    />
+                                    <div className="stat-card">
+
+                                        <div className="stat-icon blue">
+                                            📋
+                                        </div>
+
+                                        <div>
+
+                                            <span>
+                                                Total Tasks
+                                            </span>
+
+                                            <h2>
+                                                {totalTasks}
+                                            </h2>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div className="stat-card">
+
+                                        <div className="stat-icon orange">
+                                            ◷
+                                        </div>
+
+                                        <div>
+
+                                            <span>
+                                                In Progress
+                                            </span>
+
+                                            <h2>
+                                                {activeTasks}
+                                            </h2>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div className="stat-card">
+
+                                        <div className="stat-icon green">
+                                            ✓
+                                        </div>
+
+                                        <div>
+
+                                            <span>
+                                                Completed
+                                            </span>
+
+                                            <h2>
+                                                {completedTasks}
+                                            </h2>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div className="stat-card">
+
+                                        <div className="stat-icon red">
+                                            !
+                                        </div>
+
+                                        <div>
+
+                                            <span>
+                                                Overdue
+                                            </span>
+
+                                            <h2>
+                                                {overdueTasks}
+                                            </h2>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
 
-                                <div className="task-toolbar">
+                                <section className="tasks-section">
 
-                                    <div className="search-box">
+                                    <div className="section-header">
 
-                                        <span>
-                                            ⌕
-                                        </span>
+                                        <div>
 
-                                        <input
-                                            type="text"
-                                            placeholder="Search tasks..."
-                                            value={
-                                                searchTerm
-                                            }
-                                            onChange={(
-                                                e
-                                            ) =>
-                                                setSearchTerm(
-                                                    e.target.value
-                                                )
+                                            <h2>
+                                                My Tasks
+                                            </h2>
+
+                                            <p>
+                                                Manage your
+                                                tasks and
+                                                stay
+                                                productive.
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div className="add-task-card">
+
+                                        <TaskForm
+                                            onSubmit={
+                                                addTask
                                             }
                                         />
 
                                     </div>
 
 
-                                    <div className="filter-buttons">
+                                    <div className="task-toolbar">
 
-                                        <button
-                                            className={
-                                                filter ===
-                                                'all'
-                                                    ? 'filter-btn active'
-                                                    : 'filter-btn'
-                                            }
-                                            onClick={() =>
-                                                setFilter(
-                                                    'all'
-                                                )
-                                            }
-                                        >
-                                            All
-                                        </button>
+                                        <div className="search-box">
 
+                                            <span>
+                                                ⌕
+                                            </span>
 
-                                        <button
-                                            className={
-                                                filter ===
-                                                'active'
-                                                    ? 'filter-btn active'
-                                                    : 'filter-btn'
-                                            }
-                                            onClick={() =>
-                                                setFilter(
-                                                    'active'
-                                                )
-                                            }
-                                        >
-                                            Active
-                                        </button>
+                                            <input
+                                                type="text"
+                                                placeholder="Search tasks..."
+                                                value={
+                                                    searchTerm
+                                                }
+                                                onChange={(
+                                                    e
+                                                ) =>
+                                                    setSearchTerm(
+                                                        e.target.value
+                                                    )
+                                                }
+                                            />
+
+                                        </div>
 
 
-                                        <button
-                                            className={
-                                                filter ===
-                                                'completed'
-                                                    ? 'filter-btn active'
-                                                    : 'filter-btn'
-                                            }
-                                            onClick={() =>
-                                                setFilter(
-                                                    'completed'
-                                                )
-                                            }
-                                        >
-                                            Completed
-                                        </button>
+                                        <div className="filter-buttons">
+
+                                            <button
+                                                className={
+                                                    filter ===
+                                                        'all'
+                                                        ? 'filter-btn active'
+                                                        : 'filter-btn'
+                                                }
+                                                onClick={() =>
+                                                    setFilter(
+                                                        'all'
+                                                    )
+                                                }
+                                            >
+                                                All
+                                            </button>
+
+
+                                            <button
+                                                className={
+                                                    filter ===
+                                                        'active'
+                                                        ? 'filter-btn active'
+                                                        : 'filter-btn'
+                                                }
+                                                onClick={() =>
+                                                    setFilter(
+                                                        'active'
+                                                    )
+                                                }
+                                            >
+                                                Active
+                                            </button>
+
+
+                                            <button
+                                                className={
+                                                    filter ===
+                                                        'completed'
+                                                        ? 'filter-btn active'
+                                                        : 'filter-btn'
+                                                }
+                                                onClick={() =>
+                                                    setFilter(
+                                                        'completed'
+                                                    )
+                                                }
+                                            >
+                                                Completed
+                                            </button>
+
+                                        </div>
 
                                     </div>
 
-                                </div>
 
+                                    <TaskList
+                                        tasks={
+                                            filteredTasks
+                                        }
+                                        onToggle={
+                                            toggleComplete
+                                        }
+                                        onDelete={
+                                            deleteTask
+                                        }
+                                        onEdit={
+                                            editTask
+                                        }
+                                    />
 
-                                <TaskList
-                                    tasks={
-                                        filteredTasks
-                                    }
-                                    onToggle={
-                                        toggleComplete
-                                    }
-                                    onDelete={
-                                        deleteTask
-                                    }
-                                    onEdit={
-                                        editTask
-                                    }
-                                />
+                                </section>
 
-                            </section>
+                            </>
 
-                        </>
-
-                    )}
+                        )}
 
                 </section>
 
