@@ -43,7 +43,7 @@ function Register({ onShowLogin }) {
         try {
 
             await axios.post(
-                'https://task-management-eta-pied.vercel.app/api/auth/register',
+                'http://localhost:5000/api/auth/register',
                 {
                     name,
                     email,
