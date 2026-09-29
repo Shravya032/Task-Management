@@ -45,7 +45,7 @@ function ResetPassword({
         try {
             const response =
                 await axios.post(
-                    'http://localhost:5000/api/auth/reset-password',
+                    'https://task-management-eta-pied.vercel.app/api/auth/reset-password',
                     {
                         token,
                         newPassword

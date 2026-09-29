@@ -15,7 +15,7 @@ import './App.css';
 
 const API_URL =
     process.env.REACT_APP_API_BASE_URL ||
-    'http://localhost:5000/api/tasks';
+    'https://task-management-eta-pied.vercel.app/api/tasks';
 
 function App() {
 

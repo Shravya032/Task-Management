@@ -74,7 +74,7 @@ function SettingsView({
 
             const response =
                 await axios.put(
-                    'http://localhost:5000/api/auth/change-password',
+                    'https://task-management-eta-pied.vercel.app/api/auth/change-password',
                     {
                         currentPassword,
                         newPassword
