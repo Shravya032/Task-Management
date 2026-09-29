@@ -43,7 +43,7 @@ function Register({ onShowLogin }) {
         try {
 
             await axios.post(
-                'http://localhost:5000/api/auth/register',
+                '${API_BASE}/auth/register',
                 {
                     name,
                     email,

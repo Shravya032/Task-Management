@@ -74,7 +74,7 @@ function SettingsView({
 
             const response =
                 await axios.put(
-                    'http://localhost:5000/api/auth/change-password',
+                    '${API_BASE}/auth/change-password',
                     {
                         currentPassword,
                         newPassword
