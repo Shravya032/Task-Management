@@ -26,22 +26,39 @@ app.use(cors());
 app.use(express.json());
 
 // =========================
-// DATABASE
+// DATABASE & SERVERLESS CONNECTION
 // =========================
 
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() =>
-        console.log(
-            'MongoDB connected successfully'
-        )
-    )
-    .catch((err) =>
-        console.error(
-            'MongoDB connection error:',
-            err
-        )
-    );
+let isConnected = false;
+
+async function connectDB() {
+    if (isConnected && mongoose.connection.readyState === 1) {
+        return;
+    }
+
+    if (!process.env.MONGO_URI) {
+        throw new Error('MONGO_URI environment variable is missing on Vercel');
+    }
+
+    await mongoose.connect(process.env.MONGO_URI, {
+        serverSelectionTimeoutMS: 5000,
+    });
+
+    isConnected = true;
+    console.log('MongoDB connected successfully');
+}
+
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (err) {
+        console.error('MongoDB connection error:', err);
+        return res.status(500).json({
+            error: 'Database connection error: ' + err.message
+        });
+    }
+});
 
 // =========================
 // ROUTES
